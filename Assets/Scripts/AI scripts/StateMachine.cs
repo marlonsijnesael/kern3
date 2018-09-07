@@ -12,7 +12,7 @@ namespace StateClasses {
 
         public void ChangeState(State<T> _newState) {
             if (currentState != null) {
-                currentState.ExitState(Owner, _newState);
+                currentState.ExitState(Owner);
                 }
             currentState = _newState;
             currentState.EnterState(Owner);
@@ -31,7 +31,7 @@ namespace StateClasses {
 
         public abstract void EnterState(T _o);
 
-        public abstract void ExitState(T _o, T _newState);
+        public abstract void ExitState(T _o);
 
         public abstract void UpdateState(T _o);
 

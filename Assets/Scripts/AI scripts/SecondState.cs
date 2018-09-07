@@ -28,7 +28,7 @@ public class SecondState : State<FSMEnemyAI> {
         Debug.Log("entering second state");
         }
 
-    public override void ExitState(FSMEnemyAI _o, State<T> _state) {
+    public override void ExitState(FSMEnemyAI _o) {
         if (_o.switchState) {
             _o.StateMachine.ChangeState(FirstState.Instance);
             }
