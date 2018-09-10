@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Surface
+  - SpawnPoint
   layers:
   - Default
   - TransparentFX
