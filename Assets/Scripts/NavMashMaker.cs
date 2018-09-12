@@ -5,9 +5,19 @@ using UnityEngine.AI;
 
 public class NavMashMaker : MonoBehaviour {
 
+    public static NavMashMaker _Instance;
+
+    private void Awake() {
+        if (_Instance == null) {
+            _Instance = this;
+        } else {
+            Destroy(this);
+        }
+    }
+
     public GameObject[] surfaces;
 
-    void Start () {
+   public void Bake () {
 
         surfaces = GameObject.FindGameObjectsWithTag("Surface");
         
