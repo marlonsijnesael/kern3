@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
-public class RoomClass : Monobehaviour{
+[System.Serializable]
+public class RoomClass { 
 
     public int roomType;
 
