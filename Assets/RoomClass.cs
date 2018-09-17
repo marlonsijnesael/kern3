@@ -9,9 +9,12 @@ public class RoomClass {
 
     public int sizeX, sizeY;
 
-    public RoomClass(int _type, int _sizeX, int _sizeY) {
+    public int doorSize;
+
+    public RoomClass(int _type, int _sizeX, int _sizeY, int _doorSize) {
         roomType = _type;
         sizeX = _sizeX;
         sizeY = _sizeY;
+        doorSize = _doorSize;
     }
 }
