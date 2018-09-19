@@ -12,9 +12,9 @@ public class Spawner : MonoBehaviour {
 
     private void Start() {
 
-        SpawnRoom(room, spawnPoint, true, 2);
-        SpawnRoom(room, spawnPoint, true,2);
-        //SpawnRoom(room, spawnPoint, true,2);
+        SpawnRoom(room, -spawnPoint, true, 2);
+        SpawnRoom(room, -spawnPoint, true,2);
+        SpawnRoom(room, -spawnPoint, false,2);
        
         agent = Instantiate(agent);
         agent.transform.position = new Vector3(0, 2, 0);
@@ -53,7 +53,7 @@ public class Spawner : MonoBehaviour {
                 GameObject door = Instantiate(floorTile);
                 door.transform.position = new Vector3(doorSpawnPoint.x + i, doorSpawnPoint.y, doorSpawnPoint.z - j);
                 door.transform.SetParent(this.gameObject.transform);
-                NewSpawnPoint =
+                //NewSpawnPoint =
                 spawnPoint = NewSpawnPoint;
 
                 door.GetComponent<MeshRenderer>().material.color = Color.red;

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Rooms {
+public class Rooms : MonoBehaviour{
 
     public Vector2 gridPos;
 
@@ -8,9 +8,12 @@ public class Rooms {
 
     public bool doorTop, doorBot, doorLeft, doorRight;
 
-    public Rooms(Vector2 _gridPos, int _type) {
+    public GameObject prefab;
+
+    public Rooms(Vector2 _gridPos, int _type, GameObject _prefab) {
         gridPos = _gridPos;
         type = _type;
+        prefab = _prefab;
         }
 
     }
