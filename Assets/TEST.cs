@@ -9,6 +9,9 @@ public class TEST : MonoBehaviour {
 
     public int width, columns;
     public GameObject floorTile;
+
+    public bool GenerateNevMesh = true;
+
     private void Start() {
 
         gridLocations = new RoomClass[width, columns];
@@ -17,13 +20,17 @@ public class TEST : MonoBehaviour {
         for (int x = 0; x < width; x++) {
             for (int z = 0; z < columns; z++) {
                 iterationCount++;
-                gridLocations[x, z] = new RoomClass(0, x,z, 2);
-                RoomClass _room = gridLocations[x, z];
-                Vector3 _spawnPoint = new Vector3(x * 10, 0, z * 10);
-                SpawnRoom(_room, _spawnPoint, false, 2, floorTile);
-            }
+                if (iterationCount % Random.Range(1,9) == 0) {
+                    gridLocations[x, z] = new RoomClass(0, 10, 10, 2, x, z);
+                    RoomClass _room = gridLocations[x, z];
+                    Vector3 _spawnPoint = new Vector3(x * 20, 0, z * 20);
+                    SpawnRoom(_room, _spawnPoint, false, 2, floorTile);
+                    }
+                }
         }
-      //  NavMashMaker._Instance.Bake();
+        if (GenerateNevMesh) {
+            NavMashMaker._Instance.Bake();
+            }
     }
 
     // public void NestedForLooop(_x) {
@@ -41,7 +48,7 @@ public class TEST : MonoBehaviour {
 
     public void SpawnRoom(RoomClass _room, Vector3 _spawnPoint, bool _spawnDoor, int _doorSize, GameObject _floorTile) {
 
-        GameObject _roomParent = InitGameObject(new GameObject(), _spawnPoint, this.gameObject.transform, "RoomHolder");
+        GameObject _roomParent = InitGameObject(null, _spawnPoint, this.gameObject.transform, "RoomHolder");
 
         for (int x = 0; x < _room.sizeX; x++) {
             for (int z = 0; z < _room.sizeY; z++) {
@@ -57,13 +64,19 @@ public class TEST : MonoBehaviour {
     }
 
     public GameObject InitGameObject(GameObject _prefab, Vector3 _position , Transform _parent, string _name ) {
-        GameObject _gameObject = new GameObject();
+
+        GameObject _gameObject;
         if (_prefab != null) {
-            _gameObject = Instantiate(_prefab);
-        }
+
+
+           _gameObject = Instantiate(_prefab);
+            } else {
+             _gameObject = new GameObject();
+            }
         _gameObject.transform.position = _position;
         _gameObject.transform.SetParent(_parent);
         _gameObject.name = _name;
+        Debug.Log(_gameObject.name);
         return _gameObject;
     }
 }
