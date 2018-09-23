@@ -12,6 +12,17 @@ public class TEST : MonoBehaviour {
 
     public bool GenerateNevMesh = true;
 
+    public TEST _Instance;
+
+    private void Awake() {
+        if (_Instance == null) {
+            _Instance = this;
+            } else {
+            Destroy(this);
+            }
+        }
+
+
     private void Start() {
 
         gridLocations = new RoomClass[width, columns];
@@ -20,14 +31,20 @@ public class TEST : MonoBehaviour {
         for (int x = 0; x < width; x++) {
             for (int z = 0; z < columns; z++) {
                 iterationCount++;
-                if (iterationCount % Random.Range(1,9) == 0) {
-                    gridLocations[x, z] = new RoomClass(0, 10, 10, 2, x, z);
-                    RoomClass _room = gridLocations[x, z];
+               // if (iterationCount % Random.Range(1,9) == 0) {
                     Vector3 _spawnPoint = new Vector3(x * 20, 0, z * 20);
+                    gridLocations[x, z] = new RoomClass(0, 10, 10, 2, x, z, _spawnPoint);
+                    RoomClass _room = gridLocations[x, z];
                     SpawnRoom(_room, _spawnPoint, false, 2, floorTile);
+                    LoopThrough(gridLocations[x,z]);
+                    //Debug.Log(_room.worldPosition);
                     }
-                }
+               // }
         }
+
+        
+
+
         if (GenerateNevMesh) {
             NavMashMaker._Instance.Bake();
             }
@@ -63,6 +80,29 @@ public class TEST : MonoBehaviour {
         }
     }
 
+
+    public List<RoomClass> LoopThrough(RoomClass _roomClass) {
+        List<RoomClass> neighbours = new List<RoomClass>();
+
+        for (int x = -1; x <= 1; x++) {
+            for (int y = -1; y <= 1; y++) {
+                if (x == 0 && y == 0) {
+                    continue;
+                    }
+                int checkX = _roomClass.gridX + x;
+                int checkY = _roomClass.gridY + y;
+
+                if (checkX >= 0 && checkX < width && checkY >= 0 && checkY < columns) {
+                    neighbours.Add(gridLocations[checkX, checkY]);
+                    Debug.Log(neighbours.Count);
+                    }
+                }
+            }
+
+        return neighbours;
+
+        }
+
     public GameObject InitGameObject(GameObject _prefab, Vector3 _position , Transform _parent, string _name ) {
 
         GameObject _gameObject;
@@ -76,7 +116,7 @@ public class TEST : MonoBehaviour {
         _gameObject.transform.position = _position;
         _gameObject.transform.SetParent(_parent);
         _gameObject.name = _name;
-        Debug.Log(_gameObject.name);
+
         return _gameObject;
     }
 }

@@ -13,13 +13,18 @@ public class RoomClass{
     
     public int doorSize;
 
-    public RoomClass(int _type, int _sizeX, int _sizeY, int _doorSize, int _gridX, int _gridY) {
+    public Vector3 worldPosition;
+
+    public bool isConnected;
+
+    public RoomClass(int _type, int _sizeX, int _sizeY, int _doorSize, int _gridX, int _gridY, Vector3 _worldPos) {
         roomType = _type;
         sizeX = _sizeX;
         sizeY = _sizeY;
         doorSize = _doorSize;
         gridX = _gridX;
         gridY = _gridY;
+        worldPosition = _worldPos;
     }   
 
 }
