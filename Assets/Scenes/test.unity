@@ -189,6 +189,8 @@ GameObject:
   - component: {fileID: 401191793}
   - component: {fileID: 401191792}
   - component: {fileID: 401191794}
+  - component: {fileID: 401191795}
+  - component: {fileID: 401191796}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -202,7 +204,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 401191791}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 423df74334e942b4383838aef4830dec, type: 3}
   m_Name: 
@@ -218,10 +220,13 @@ MonoBehaviour:
     gridX: 0
     gridY: 0
     doorSize: 0
+    worldPosition: {x: 0, y: 0, z: 0}
+    isConnected: 0
   width: 10
   columns: 10
   floorTile: {fileID: 1664741785211314, guid: ae3f4dc9d0a4d5f499a8a53f269fe9d0, type: 2}
   GenerateNevMesh: 0
+  _Instance: {fileID: 0}
 --- !u!4 &401191793
 Transform:
   m_ObjectHideFlags: 0
@@ -247,6 +252,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   surfaces: []
+--- !u!114 &401191795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 401191791}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c0c033340bf52a45a430135edd927b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OpenList: []
+  ClosedList: []
+  grid: {fileID: 0}
+  startObject: {fileID: 0}
+--- !u!114 &401191796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 401191791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb32eac1c6695654eac9d23e6a981151, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arraySizeX: 5
+  arraySizeY: 5
+  roomTile: {fileID: 1664741785211314, guid: ae3f4dc9d0a4d5f499a8a53f269fe9d0, type: 2}
+  path: {fileID: 0}
 --- !u!1 &566513802
 GameObject:
   m_ObjectHideFlags: 0
@@ -318,7 +353,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 566513802}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 96, y: 184, z: 92}
+  m_LocalPosition: {x: 54.3, y: 95.1, z: 41.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
