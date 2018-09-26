@@ -8,9 +8,11 @@ public class FindPath : MonoBehaviour {
     private GridGenerator _gridInstance;
     List<RoomNode> path = new List<RoomNode>();
     List<List<RoomNode>> nestedRoomList = new List<List<RoomNode>>();
+    List<RoomNode> potentialPaths = new List<RoomNode>();
     public GameObject walkWay;
 
-
+    public RoomNode tempNode;
+    public int tempShortest;
     private void Start() {
         _gridInstance = GetComponent<GridGenerator>();
         ClosestRoom(_gridInstance.filledRooms[0]);
@@ -22,7 +24,15 @@ public class FindPath : MonoBehaviour {
 
     }
 
-    
+    void CountParents(RoomNode startNode, RoomNode endNode) {
+        RoomNode currentNode = endNode;
+       
+        while (currentNode != startNode) {
+            startNode.parentCount++;
+            currentNode = currentNode.parent;
+            
+            }
+        }
 
     void RetracePath(RoomNode startNode, RoomNode endNode) {
         List<RoomNode> path = new List<RoomNode>();
@@ -31,19 +41,22 @@ public class FindPath : MonoBehaviour {
         while (currentNode != startNode) {
             path.Add(currentNode);
             currentNode = currentNode.parent;
-        }
+           // CreatePath(currentNode);
+            currentNode.ChangeColor(Color.yellow);
+            }
         path.Reverse();
-
+        
+       
         nestedRoomList.Add(path);
 
 
     }
 
-    public void CreatePath(List<RoomNode> _path) {
-        foreach (RoomNode tile in _path) {
+    public void CreatePath(RoomNode tile) {
+       // foreach (RoomNode tile in _path) {
             GameObject floorTile = Instantiate(walkWay);
             walkWay.transform.position = new Vector3(tile.gridX * 20, 0, tile.gridY * 20);
-        }
+        
     }
 
     public void ClosestRoom(RoomNode _nodeA) {
@@ -65,7 +78,7 @@ public class FindPath : MonoBehaviour {
             }
         }
 
-        CreatePath(finalPath);
+        //CreatePath(finalPath);
         Debug.Log(nestedRoomList.Count);
 
 
@@ -74,7 +87,7 @@ public class FindPath : MonoBehaviour {
 
     }
 
-    void Path(RoomNode startNode, RoomNode targetNode) {
+    void  Path(RoomNode startNode, RoomNode targetNode) {
        // Vector2Int gridposStart = _gridInstance.startNode;
         //vector2Int gridposTarget = _gridInstance.endNode;
         //RoomNode startNode = _gridInstance.roomNodeArray[gridposStart.x, gridposStart.y];
@@ -82,7 +95,9 @@ public class FindPath : MonoBehaviour {
 
         List<RoomNode> openSet = new List<RoomNode>();
         HashSet<RoomNode> closedSet = new HashSet<RoomNode>();
+        
         openSet.Add(startNode);
+        
 
         while (openSet.Count > 0) {
             RoomNode node = openSet[0];
@@ -97,9 +112,12 @@ public class FindPath : MonoBehaviour {
             closedSet.Add(node);
 
             if (node == targetNode) {
-                 RetracePath(startNode, targetNode);
+                // RetracePath(startNode, targetNode);
+                
+                startNode.ChangeColor(Color.red);
+                targetNode.ChangeColor(Color.blue);
                 Debug.Log("found");
-                return;
+                return ;
             }
 
             foreach (RoomNode neighbour in _gridInstance.LoopThrough(node)) {
@@ -117,6 +135,7 @@ public class FindPath : MonoBehaviour {
                         openSet.Add(neighbour);
                 }
             }
+         
         }
     }
 

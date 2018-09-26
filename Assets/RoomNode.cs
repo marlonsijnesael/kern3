@@ -23,6 +23,7 @@ public class RoomNode {
 
     public bool IsConnected;
 
+    public int parentCount = 0;
     
 
     public List<RoomNode> Neighbours = new List<RoomNode>();
@@ -33,6 +34,7 @@ public class RoomNode {
         roomName = _roomName;
         worldPos = _worldPos;
         isFilled = _isRoom;
+        //roomName = gridX.ToString() + gridY.ToString();
         //self = _roomPrefab;
         }
 
@@ -51,6 +53,10 @@ public class RoomNode {
         
         }
 
+
+    public string gridName {
+        get { return gridX.ToString() +" "+  gridY.ToString(); }
+        }
 
     public int fCost { 
         get { return hCost + gCost; }

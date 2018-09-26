@@ -46,7 +46,7 @@ public class GridGenerator : MonoBehaviour {
         for (int x = 0; x < arraySizeX; x++) {                                                                                      //nested for loop to create grid according to gridsize x and y
             for (int z = 0; z < arraySizeY; z++) {
                 iterationCount++;
-                Vector3 _spawnPoint = new Vector3(x , 0, z );                                                               //spawnPoint offset to realworld
+                Vector3 _spawnPoint = new Vector3(x *20 , 0, z*20 );                                                               //spawnPoint offset to realworld
                 RoomNode NewRoom = new RoomNode(x, z, "roomNode" + iterationCount.ToString(), _spawnPoint, FillRoom());             //instantiate new node
                 GameObject roomObj = Instantiate(roomTile);                                                                         //instantiate gameObject for node
                 NewRoom.self = roomObj;
