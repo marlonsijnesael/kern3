@@ -11,18 +11,27 @@ public class GridGenerator : MonoBehaviour {
     public GameObject roomTile;                     // placeholder
     public GameObject path;
 
+
+
     int counterX = 0;                               //counters for testpurposes
     int counterY = 0;                               //counters for testpurposes
+    int horizontalCost = 10;
+    int verticalCost = 14;
 
+    
+    public Vector2Int startNode,endNode;
+    public List<RoomNode> filledRooms = new List<RoomNode>();
 
-    private void Start() {
-            CreateGrid();         
+    private void Awake() {
+        CreateGrid();
+        FindNeighbours();
+      //  Debug.Log(GetDistance(roomNodeArray[startNode, startNode], roomNodeArray[endNode, endNode]));
         }
 
 
     public void Update() {
 
-        FindNeighbours();
+        
 
         if (Input.GetKeyDown(KeyCode.X)) {
             TestCode();
@@ -37,7 +46,7 @@ public class GridGenerator : MonoBehaviour {
         for (int x = 0; x < arraySizeX; x++) {                                                                                      //nested for loop to create grid according to gridsize x and y
             for (int z = 0; z < arraySizeY; z++) {
                 iterationCount++;
-                Vector3 _spawnPoint = new Vector3(x * 20, 0, z * 20);                                                               //spawnPoint offset to realworld
+                Vector3 _spawnPoint = new Vector3(x , 0, z );                                                               //spawnPoint offset to realworld
                 RoomNode NewRoom = new RoomNode(x, z, "roomNode" + iterationCount.ToString(), _spawnPoint, FillRoom());             //instantiate new node
                 GameObject roomObj = Instantiate(roomTile);                                                                         //instantiate gameObject for node
                 NewRoom.self = roomObj;
@@ -45,6 +54,13 @@ public class GridGenerator : MonoBehaviour {
                 NewRoom.InitSelf();
                 }
             }
+
+        foreach (RoomNode room in roomNodeArray) {
+            if (room.isFilled) {
+                filledRooms.Add(room);
+                //Debug.Log(filledRooms.Count);
+            }
+        }
         }
     
         
@@ -52,9 +68,13 @@ public class GridGenerator : MonoBehaviour {
     public void FindNeighbours() {
         foreach (RoomNode _r in roomNodeArray) {
             _r.Neighbours = LoopThrough(_r);
-            Debug.Log(_r.Neighbours.Count);
+            //Debug.Log(_r.Neighbours.Count);
             }
         }
+
+
+
+    
 
 
     //list that loops through the neighbours of the selected node, returns neighbours;
@@ -90,7 +110,16 @@ public class GridGenerator : MonoBehaviour {
 
 
 
+    public int GetDistance(RoomNode _roomnodeA, RoomNode _roomnodeB ) {
+        int distX = Mathf.Abs(_roomnodeA.gridX - _roomnodeB.gridX);
+        int distY = Mathf.Abs(_roomnodeA.gridY - _roomnodeB.gridY);
 
+        if (distX > distY) {
+            return verticalCost * distY + horizontalCost * (distX - distY);
+        }
+        return verticalCost * distX + 10 * (distY - distX);
+
+    }
 
 
 

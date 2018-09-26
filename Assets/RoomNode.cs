@@ -17,6 +17,14 @@ public class RoomNode {
 
     public bool isRoom;
 
+    public int gCost, hCost;
+
+    public RoomNode parent;
+
+    public bool IsConnected;
+
+    
+
     public List<RoomNode> Neighbours = new List<RoomNode>();
 
     public RoomNode(int _gridX, int _gridY, string _roomName, Vector3 _worldPos, bool _isRoom) {
@@ -24,12 +32,12 @@ public class RoomNode {
         gridY = _gridY;
         roomName = _roomName;
         worldPos = _worldPos;
-        isRoom = _isRoom;
+        isFilled = _isRoom;
         //self = _roomPrefab;
         }
 
     public void InitSelf() {
-        if (isRoom) {
+        if (isFilled) {
             self.transform.position = worldPos;
             self.name = roomName;
             } else {
@@ -43,8 +51,9 @@ public class RoomNode {
         
         }
 
- 
 
-
-
+    public int fCost { 
+        get { return hCost + gCost; }
     }
+
+}
