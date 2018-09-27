@@ -265,6 +265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkWay: {fileID: 0}
+  tempShortest: 0
 --- !u!114 &401191796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -278,10 +279,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arraySizeX: 5
   arraySizeY: 5
+  gridWorldSizeX: 20
+  gridWorldSizeY: 20
   roomTile: {fileID: 1664741785211314, guid: ae3f4dc9d0a4d5f499a8a53f269fe9d0, type: 2}
   path: {fileID: 0}
+  nodeDiameter: 1
+  nodeRadius: 0
   startNode: {x: 0, y: 0}
   endNode: {x: 3, y: 4}
+  worldBottomLeft: {x: 0, y: 0, z: 0}
 --- !u!114 &401191797
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -293,7 +299,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c0c033340bf52a45a430135edd927b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkWay: {fileID: 1664741785211314, guid: ae3f4dc9d0a4d5f499a8a53f269fe9d0, type: 2}
+  walkWay: {fileID: 1867557210705654, guid: 25307f60bba4c3a429965c7e9d7887d6, type: 2}
+  tempShortest: 0
 --- !u!1 &566513802
 GameObject:
   m_ObjectHideFlags: 0

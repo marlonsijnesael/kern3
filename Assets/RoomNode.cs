@@ -24,6 +24,11 @@ public class RoomNode {
     public bool IsConnected;
 
     public int parentCount = 0;
+
+    public bool hasNeighbours;
+
+    public int type = 0;    //type 0 == empty node, type 1 = room type 2 = walkway;
+    
     
 
     public List<RoomNode> Neighbours = new List<RoomNode>();
@@ -34,6 +39,7 @@ public class RoomNode {
         roomName = _roomName;
         worldPos = _worldPos;
         isFilled = _isRoom;
+        
         //roomName = gridX.ToString() + gridY.ToString();
         //self = _roomPrefab;
         }
@@ -42,14 +48,15 @@ public class RoomNode {
         if (isFilled) {
             self.transform.position = worldPos;
             self.name = roomName;
+            type = 1;
             } else {
-            MonoBehaviour.Destroy(self);
+            //MonoBehaviour.Destroy(self);
             }
         }
 
     public void ChangeColor(Color _c) {
-        Material mat = self.GetComponent<MeshRenderer>().material;
-        mat.color = _c;
+        //Material mat = self.GetComponent<MeshRenderer>().material;
+       // mat.color = _c;
         
         }
 
