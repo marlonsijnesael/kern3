@@ -9,13 +9,14 @@ public class EnemyAgentFSM : EnemyBaseClass {
     public Transform goal;
     UnityEngine.AI.NavMeshAgent agent;
 
-
+    public GameObject raySpawn;
 
     new private void Start() {
         base.Start();
         currentState = EnemyStates.IDLE;
         goal = base.playerObject.transform;
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        agent.ResetPath();
         }
 
 
@@ -42,25 +43,40 @@ public class EnemyAgentFSM : EnemyBaseClass {
         }
 
     public void IdleBahaviour() {
+        CastRay();
+        transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y + 5, transform.localEulerAngles.z);
+        }
 
+    public void ChaseBehaviour() {
+        agent.destination = goal.position;
+        transform.LookAt(goal.transform);
+        FindPlayer();
         }
 
 
-    //state machine for lurker enemy
-    private void StateMachine(EnemyStates state) {
+    public void CastRay() {
+        Vector3 fwd = raySpawn.transform.TransformDirection(Vector3.forward);
+        RaycastHit hit;
+        Debug.DrawRay(raySpawn.transform.position, fwd * 50, Color.green);
+        if (Physics.Raycast(raySpawn.transform.position, fwd, out hit, 50)) {
+            if (hit.transform.tag == "Player")
+                Debug.Log(hit.transform.name);
+                currentState = EnemyStates.CHASE;
+
+            }
+        }
+        //state machine for lurker enemy
+        private void StateMachine(EnemyStates state) {
         switch (state) {
             case EnemyStates.NULL:
                 break;
 
             case EnemyStates.IDLE:
-                agent.SetPath(null);
-                transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y + 1, transform.localEulerAngles.z);
+                IdleBahaviour();
                 break;
 
             case EnemyStates.CHASE:
-                agent.destination = goal.position;
-                transform.LookAt(goal.transform);
-                //EnemyMovement();
+                ChaseBehaviour();
                 break;
 
             case EnemyStates.ATTACK:

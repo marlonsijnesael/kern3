@@ -50,10 +50,6 @@ public class EnemyBaseClass : MonoBehaviour {
         enemyHealth -= amount;
         }
 
-    public virtual void EnemyMovement() {
-        //add behaviour on derriving enemy
-        }
-
     public virtual void FindPlayer() {
         if (playerObject == null) {
             currentState = EnemyStates.IDLE;
@@ -77,10 +73,6 @@ public class EnemyBaseClass : MonoBehaviour {
             currentState = EnemyStates.DEAD;
             Destroy(this.gameObject);
             }
-        }
-
-    public virtual void ChaseTarget(Transform _target) {
-        transform.position = Vector2.MoveTowards(transform.position, _target.position, chaseSpeed * Time.deltaTime);
         }
 
     public virtual void Attack() {

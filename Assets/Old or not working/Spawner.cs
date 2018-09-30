@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spawner : MonoBehaviour {
+public class SpawnerScript : MonoBehaviour {
 
     public GameObject floorTile;
     public RoomClass room;

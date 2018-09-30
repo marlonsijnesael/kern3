@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34a7c8ca992f915438a96c2077353778, type: 3}
+  m_Name: Testbeh
+  m_EditorClassIdentifier: 
+  brickName: Assets/BehaviorBricks/Testbeh.asset
+  xml: "\uFEFF<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<BehaviorBricks xmlns:ref=\"urn:padaone\"
+    version=\"1.0\">\r\n  <BehaviorTree id=\"0\" />\r\n  <runtimeInfo>\r\n    <BehaviorTree
+    id=\"0\" guid=\"4fabe23cb9a62e74d97ca48209fbf62b\" nextId=\"33\">\r\n      <root>\r\n
+    \       <PrioritySelectorNode id=\"27\" />\r\n      </root>\r\n      <inputParams>\r\n
+    \       <inputValues>\r\n          <entry name=\"Player\" type=\"UnityEngine.GameObject\"
+    isBlackboard=\"False\" />\r\n          <entry name=\"wanderArea\" type=\"UnityEngine.GameObject\"
+    isBlackboard=\"False\" />\r\n          <entry name=\"angle\" type=\"System.Single\"
+    isBlackboard=\"False\" value=\"0\" />\r\n          <entry name=\"closeDistance\"
+    type=\"System.Single\" isBlackboard=\"False\" value=\"0\" />\r\n          <entry
+    name=\"isClose\" type=\"System.Boolean\" isBlackboard=\"False\" value=\"False\"
+    />\r\n        </inputValues>\r\n      </inputParams>\r\n      <outputParams />\r\n
+    \     <localParams />\r\n    </BehaviorTree>\r\n    <PrioritySelectorNode id=\"27\">\r\n
+    \     <children />\r\n      <inputParams />\r\n      <outputParams />\r\n      <localParams
+    />\r\n    </PrioritySelectorNode>\r\n  </runtimeInfo>\r\n  <editorInfo>\r\n    <BehaviorTree
+    id=\"0\" _name=\"Testbeh\" _description=\"\" _removeIfClosed=\"False\">\r\n      <_rootList>\r\n
+    \       <elem>\r\n          <ActionNode id=\"26\" />\r\n        </elem>\r\n        <elem>\r\n
+    \         <ActionNode id=\"29\" />\r\n        </elem>\r\n        <elem>\r\n          <PrioritySelectorNode
+    id=\"27\" />\r\n        </elem>\r\n      </_rootList>\r\n      <_nodes>\r\n        <nodes>\r\n
+    \         <ActionNode id=\"29\" />\r\n          <ActionNode id=\"26\" />\r\n          <PrioritySelectorNode
+    id=\"27\" />\r\n        </nodes>\r\n      </_nodes>\r\n    </BehaviorTree>\r\n
+    \   <PrioritySelectorNode id=\"27\">\r\n      <_data>\r\n        <data breakpoint=\"0\"
+    selected=\"False\" position=\"827.7778 475.5556\" name=\"Priority Selector\" description=\"\"
+    cardinality=\"1\" hasParent=\"False\">\r\n          <BehaviorTree id=\"0\" />\r\n
+    \         <PrioritySelectorNode id=\"27\" />\r\n        </data>\r\n      </_data>\r\n
+    \   </PrioritySelectorNode>\r\n  </editorInfo>\r\n  <runtimeInfo>\r\n    <ActionNode
+    id=\"26\" action=\"Basic/SetBool\">\r\n      <inputParams>\r\n        <inputValues>\r\n
+    \         <entry name=\"value\" type=\"System.Boolean\" isBlackboard=\"True\"
+    blackboard=\"isClose\" />\r\n        </inputValues>\r\n      </inputParams>\r\n
+    \     <outputParams>\r\n        <outputValues>\r\n          <entry name=\"var\"
+    type=\"System.Boolean\" isBlackboard=\"True\" blackboard=\"isClose\" />\r\n        </outputValues>\r\n
+    \     </outputParams>\r\n      <localParams />\r\n    </ActionNode>\r\n    <ActionNode
+    id=\"29\" action=\"Navigation/MoveToGameObject\">\r\n      <inputParams>\r\n        <inputValues>\r\n
+    \         <entry name=\"target\" type=\"UnityEngine.GameObject\" isBlackboard=\"True\"
+    blackboard=\"Player\" />\r\n        </inputValues>\r\n      </inputParams>\r\n
+    \     <outputParams />\r\n      <localParams />\r\n    </ActionNode>\r\n  </runtimeInfo>\r\n
+    \ <editorInfo>\r\n    <ActionNode id=\"26\">\r\n      <_data>\r\n        <data
+    breakpoint=\"0\" selected=\"False\" position=\"583.334 668.889\" name=\"Basic/SetBool\"
+    description=\"Sets a value to a boolean variable\" cardinality=\"0\" hasParent=\"False\">\r\n
+    \         <BehaviorTree id=\"26\" />\r\n        </data>\r\n      </_data>\r\n
+    \   </ActionNode>\r\n    <ActionNode id=\"29\">\r\n      <_data>\r\n        <data
+    breakpoint=\"0\" selected=\"False\" position=\"895.5559 732.2227\" name=\"Navigation/MoveToGameObject\"
+    description=\"Moves the game object towards a given target by using a NavMeshAgent\"
+    cardinality=\"0\" hasParent=\"False\">\r\n          <BehaviorTree id=\"0\" />\r\n
+    \         <ActionNode id=\"29\" />\r\n        </data>\r\n      </_data>\r\n    </ActionNode>\r\n
+    \ </editorInfo>\r\n  <runtimeInfo>\r\n    <BehaviorTree id=\"26\" nextId=\"1\">\r\n
+    \     <inputParams />\r\n      <outputParams />\r\n      <localParams />\r\n    </BehaviorTree>\r\n
+    \ </runtimeInfo>\r\n  <editorInfo>\r\n    <BehaviorTree id=\"26\" _removeIfClosed=\"False\">\r\n
+    \     <_rootList />\r\n      <_nodes>\r\n        <nodes />\r\n      </_nodes>\r\n
+    \   </BehaviorTree>\r\n  </editorInfo>\r\n</BehaviorBricks>"
+  zoom: 0.9
+  subslist:
+  - {fileID: 11400000, guid: 8adfddffa70852a45ba1b64354494e3c, type: 2}
+  _guid: 4fabe23cb9a62e74d97ca48209fbf62b
