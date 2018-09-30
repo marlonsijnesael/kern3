@@ -6,6 +6,9 @@ using UnityEngine.AI;
 public class NavMashMaker : MonoBehaviour {
 
     public static NavMashMaker _Instance;
+    public GridGenerator grid;
+    public List<RoomNode> roomNodes = new List<RoomNode>();
+
 
     private void Awake() {
         if (_Instance == null) {
@@ -15,15 +18,18 @@ public class NavMashMaker : MonoBehaviour {
         }
     }
 
-    public GameObject[] surfaces;
+    private void Start() {
+        grid = GetComponent<GridGenerator>();
+        }
 
-   public void Bake () {
+    public void Bake () {
 
-        surfaces = GameObject.FindGameObjectsWithTag("Surface");
-        
-
-        for (int i = 0; i < surfaces.Length; i++) {
-            surfaces[i].GetComponent<NavMeshSurface>().BuildNavMesh();
+        foreach (RoomNode node in grid.roomNodeArray) {
+            if (node.type == 1) {
+                if (node.self.GetComponent<NavMeshSurface>() != null)
+                    node.self.GetComponent<NavMeshSurface>().BuildNavMesh();
+              
+                }
             }
         }
 	

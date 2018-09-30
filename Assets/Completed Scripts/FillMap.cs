@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 
 /// <summary>
@@ -14,9 +15,17 @@ public class FillMap : MonoBehaviour {
     public int amountOfIterations;
 
     [Header("Prefabs")]
-    public GameObject walkWay;
-    public GameObject wall;
+ 
+    public GameObject wallPrefab;
     public GameObject roomPrefab;
+    public GameObject playerPrefab;
+    public GameObject enemyPrefab_FSM;
+
+    private Vector3 PlayerSpawnPoint;
+
+    private Vector3 EnemySpawnPoint;
+
+
 
     private void Start() {
         _gridReference = GetComponent<GridGenerator>();
@@ -24,7 +33,7 @@ public class FillMap : MonoBehaviour {
         }
 
     //Creates a path between two random nodes and repeats this proces for the amount of iterations wanted. 
-    //when This is done, it determines if the node is a Room or a wall and Instantiates the right prefab;
+    //when This is done, it determines if the node is a Room or a wall and Instantiates the right prefab.
     public void CreateRooms() {
 
         Vector2Int room1 = new Vector2Int(Random.Range(1, _gridReference.arraySizeX - 1), Random.Range(1, _gridReference.arraySizeY - 1));
@@ -32,13 +41,21 @@ public class FillMap : MonoBehaviour {
         RoomNode node1 = _gridReference.roomNodeArray[room1.x, room1.y];
         RoomNode node2 = _gridReference.roomNodeArray[room2.x, room2.y];
 
+        //set first node as player spawnpoint
+        PlayerSpawnPoint = node1.worldPos;
+        EnemySpawnPoint = node1.worldPos;
+        PlayerSpawnPoint.y += 10;
+
+        //first create and connect rooms
         for (int i = 0; i < amountOfIterations; i++) {
             FindPath(node1, node2);
             node1 = node2;
             room1 = new Vector2Int(Random.Range(1, _gridReference.arraySizeX - 1), Random.Range(1, _gridReference.arraySizeY - 1));
             node2 = _gridReference.roomNodeArray[room1.x, room1.y];
             }
+       
 
+        //fill in empty nodes as walls
         foreach (RoomNode room in _gridReference.roomNodeArray) {
             if (room.type != 1) {
                 room.type = 0;
@@ -47,14 +64,24 @@ public class FillMap : MonoBehaviour {
                 InstantiateNode(room, roomPrefab, true);
                 SetDoors(room);
                 } else if (room.type == 0) {
-                InstantiateNode(room, wall, false);
+                InstantiateNode(room, wallPrefab, false);
                 }
             }
+        //instantiate player when all rooms are created
+        GameObject player = Instantiate(playerPrefab);
+        player.transform.position = PlayerSpawnPoint;
+
+        NavMashMaker._Instance.Bake();
+
+        GameObject enemy = Instantiate(enemyPrefab_FSM);
+        enemy.GetComponent<NavMeshAgent>().Warp(EnemySpawnPoint);
+
         }
 
     //function to instantiate the nodes without code repitition
     public void InstantiateNode(RoomNode _room, GameObject _prefab, bool _filled) {
         _room.self = Instantiate(_prefab);
+        _room.self.transform.SetParent(this.transform);
         _room.isFilled = _filled;
         _room.InitSelf();
         }
@@ -111,6 +138,7 @@ public class FillMap : MonoBehaviour {
                     neighbour.parent = node;
 
                     if (!openSet.Contains(neighbour))
+
                         openSet.Add(neighbour);
                     }
                 }
@@ -159,6 +187,10 @@ public class FillMap : MonoBehaviour {
         }
     }
 
+
+
+
+//old code from old spawning algoritm, this turned out to be super slow
 
 /*
 public void CountParents(RoomNode startNode, RoomNode endNode) {
