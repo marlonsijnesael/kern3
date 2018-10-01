@@ -8,8 +8,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e23d52092f9cb4141b2a5c1332e3cec2, type: 3}
-  m_Name: decision SMALL distance enemy 1
+  m_Script: {fileID: 11500000, guid: 924ddb0eebe380c4ca6a37c3ff4c3461, type: 3}
+  m_Name: RemainState
   m_EditorClassIdentifier: 
-  BiggerThanTarget: 0
-  target: 20
+  actions: []
+  possibleStates: []
+  transitions: []
+  sceneGizmoColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}

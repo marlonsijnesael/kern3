@@ -202,13 +202,12 @@ MonoBehaviour:
   currentState: {fileID: 11400000, guid: 3ac90494cb8a0f147b5dec19625c7792, type: 2}
   eyes: {fileID: 4458271141951512}
   body: []
-  remainState: {fileID: 0}
+  remainState: {fileID: 11400000, guid: 7f9464d4e3254894db359e2b39f597a4, type: 2}
   navMeshAgent: {fileID: 0}
   wayPointList: []
   nextWayPoint: 0
   chaseTarget: {fileID: 0}
   stateTimeElapsed: 0
-  aiActive: 1
 --- !u!136 &136426913036264110
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -231,11 +230,11 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5000001
-  m_Speed: 2.5
+  m_Speed: 3
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0.96
+  m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1

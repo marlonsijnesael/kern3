@@ -1,75 +1,60 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
-
+/// <summary>
+/// Class contains all data for a room/node on the grid.
+/// this class is used to store data for the procedural generation of our map
+/// </summary>
 public class RoomNode {
 
+    //position on node grid
     public int gridX, gridY;
 
+    //check if node will be filled with a room or a wall
     public bool isFilled;
 
+    //to find room in inspector
     public string roomName;
 
+    //worldposition calculated with grid position in grid generator
     public Vector3 worldPos;
 
+    //reference to gameObject attached to this node
     public GameObject self;
 
-    public bool isRoom;
-
+    //cost for A* pathfinding to traverse from/to this node on grid g= cost from starting point to target node and H = heuristic
     public int gCost, hCost;
 
+    //combined cost of gCost and hCost
+    public int fCost {
+        get { return hCost + gCost; }
+        }
+
+    //parent node for path tracing
     public RoomNode parent;
 
-    public bool IsConnected;
-
-    public int parentCount = 0;
-
-    public bool hasNeighbours;
-
-    public int type = 0;    //type 0 == empty node, type 1 = room type 2 = walkway;
-    
-    
+    //type for room instantiation
+    public int type = 0;    //type 0 == empty node, type 1 = room
 
     public List<RoomNode> Neighbours = new List<RoomNode>();
 
+    //Roomnode constructor
     public RoomNode(int _gridX, int _gridY, string _roomName, Vector3 _worldPos, bool _isRoom) {
         gridX = _gridX;
         gridY = _gridY;
         roomName = _roomName;
         worldPos = _worldPos;
         isFilled = _isRoom;
-        
-        //roomName = gridX.ToString() + gridY.ToString();
-        //self = _roomPrefab;
         }
 
+    //used when populating the map with either rooms or maps
     public void InitSelf() {
-       
         if (isFilled) {
-            
             type = 1;
             } else {
             type = 0;
-            //MonoBehaviour.Destroy(self);
             }
         self.transform.position = worldPos;
         self.name = roomName;
         }
-
-    public void ChangeColor(Color _c) {
-        //Material mat = self.GetComponent<MeshRenderer>().material;
-       // mat.color = _c;
-        
-        }
-
-
-    public string gridName {
-        get { return gridX.ToString() +" "+  gridY.ToString(); }
-        }
-
-    public int fCost { 
-        get { return hCost + gCost; }
     }
-
-}

@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Name: Decision_look enemy 1
   m_EditorClassIdentifier: 
   radius: 3
+  rayLength: 8

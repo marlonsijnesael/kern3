@@ -1,7 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+/// <summary>
+/// used to create state assets
+/// The state then loops through each action and each transition
+/// </summary>
 [CreateAssetMenu(menuName = "PluggableAI/State")]
 public class State : ScriptableObject {
 

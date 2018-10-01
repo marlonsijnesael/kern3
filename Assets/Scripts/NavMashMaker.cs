@@ -28,6 +28,7 @@ public class NavMashMaker : MonoBehaviour {
             if (node.type == 1) {
                 if (node.self.GetComponent<NavMeshSurface>() != null)
                     node.self.GetComponent<NavMeshSurface>().BuildNavMesh();
+                    node.self.GetComponent<NavMeshLink>().UpdateLink();
               
                 }
             }

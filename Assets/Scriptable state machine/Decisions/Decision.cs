@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+
 
 public abstract class Decision : ScriptableObject {
-    public abstract bool Decide(StateManager controller);
+    public abstract bool Decide(StateManager _stateManager);
     }

@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+//abstract script to implement in action
 public abstract class Action : ScriptableObject {
 
     public abstract void DoAction(StateManager _stateManager);

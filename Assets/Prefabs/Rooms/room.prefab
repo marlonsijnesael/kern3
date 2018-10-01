@@ -974,7 +974,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1491731640591692}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -61.205536, y: 28.121971, z: -63.14565}
+  m_LocalPosition: {x: -2.711853, y: 2.6306143, z: -62.37527}
   m_LocalScale: {x: 0.9999, y: 0.9999, z: 0.9999}
   m_Children:
   - {fileID: 4253142279271308}
@@ -2455,8 +2455,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_AgentTypeID: 0
   m_CollectObjects: 0
-  m_Size: {x: 10, y: 10, z: 10}
-  m_Center: {x: 0, y: 2, z: 0}
+  m_Size: {x: 6.737591, y: 10, z: 10}
+  m_Center: {x: 1.6312046, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -2469,7 +2469,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: 45df134b58be67f4290960efc8a29207, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: c87335ed5416d7c4c802a3cefcb321a3, type: 2}
 --- !u!114 &114773130994891702
 MonoBehaviour:
   m_ObjectHideFlags: 1

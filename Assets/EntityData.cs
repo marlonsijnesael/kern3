@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+//class for all characters, both player and AI to keep track of important values
 public class EntityData : MonoBehaviour {
 
     public int health;

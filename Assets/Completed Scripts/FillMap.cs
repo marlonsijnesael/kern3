@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 /// <summary>
 /// this class is used to fill the created 2d node grid with rooms and walls
+/// all code except for the pathfinding algorithm is written by me
 /// </summary>
 public class FillMap : MonoBehaviour {
 
@@ -13,19 +14,18 @@ public class FillMap : MonoBehaviour {
 
     [Header("Iterations")]
     public int amountOfIterations;
+    public int enemyCount;
 
     [Header("Prefabs")]
- 
+
     public GameObject wallPrefab;
     public GameObject roomPrefab;
     public GameObject playerPrefab;
-    public GameObject enemyPrefab_FSM;
+    public GameObject enemeyPrefab;
 
     private Vector3 PlayerSpawnPoint;
 
     private Vector3 EnemySpawnPoint;
-
-
 
     private void Start() {
         _gridReference = GetComponent<GridGenerator>();
@@ -43,8 +43,8 @@ public class FillMap : MonoBehaviour {
 
         //set first node as player spawnpoint
         PlayerSpawnPoint = node1.worldPos;
-        EnemySpawnPoint = node1.worldPos;
-        PlayerSpawnPoint.y += 10;
+        
+        PlayerSpawnPoint.y += 5;
 
         //first create and connect rooms
         for (int i = 0; i < amountOfIterations; i++) {
@@ -53,15 +53,20 @@ public class FillMap : MonoBehaviour {
             room1 = new Vector2Int(Random.Range(1, _gridReference.arraySizeX - 1), Random.Range(1, _gridReference.arraySizeY - 1));
             node2 = _gridReference.roomNodeArray[room1.x, room1.y];
             }
-       
+
 
         //fill in empty nodes as walls
         foreach (RoomNode room in _gridReference.roomNodeArray) {
             if (room.type != 1) {
                 room.type = 0;
+               
                 }
             if (room.type == 1) {
                 InstantiateNode(room, roomPrefab, true);
+                if (Random.value > 0.7f) {
+                    EnemySpawnPoint = new Vector3(room.worldPos.x , room.worldPos.y + 5, room.worldPos.z );
+                    SpawnEnemy(10f, EnemySpawnPoint);   
+                    }
                 SetDoors(room);
                 } else if (room.type == 0) {
                 InstantiateNode(room, wallPrefab, false);
@@ -73,12 +78,27 @@ public class FillMap : MonoBehaviour {
 
         NavMashMaker._Instance.Bake();
 
-        GameObject enemy = Instantiate(enemyPrefab_FSM);
-        enemy.GetComponent<NavMeshAgent>().Warp(EnemySpawnPoint);
+        
+       // enemy.GetComponent<NavMeshAgent>().Warp(EnemySpawnPoint);
 
         }
 
-    //function to instantiate the nodes without code repitition
+   public void SpawnEnemy(float _range, Vector3 _spawnPoint) {
+        Vector3 randomPoint = _spawnPoint + Random.insideUnitSphere * _range;
+        NavMeshHit hit;
+        for (int i = 0; i < 30; i++) {
+            if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas)) {
+                _spawnPoint = hit.position;
+                }
+
+            }
+        GameObject enemy = Instantiate(enemeyPrefab);
+      
+        enemy.GetComponent<NavMeshAgent>().Warp(_spawnPoint);
+
+        }
+
+            //function to instantiate the nodes without code repitition
     public void InstantiateNode(RoomNode _room, GameObject _prefab, bool _filled) {
         _room.self = Instantiate(_prefab);
         _room.self.transform.SetParent(this.transform);
@@ -119,9 +139,6 @@ public class FillMap : MonoBehaviour {
 
             if (node == targetNode) {
                 Trace(startNode, targetNode);
-
-                startNode.ChangeColor(Color.red);
-                targetNode.ChangeColor(Color.blue);
                 Debug.Log("found");
                 return;
                 }

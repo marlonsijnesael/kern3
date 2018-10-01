@@ -8,8 +8,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e23d52092f9cb4141b2a5c1332e3cec2, type: 3}
-  m_Name: decision SMALL distance enemy 1
-  m_EditorClassIdentifier: 
-  BiggerThanTarget: 0
-  target: 20
+  m_Script: {fileID: 0}
+  m_Name: Behindtarget
+  m_EditorClassIdentifier: Assembly-CSharp::DecisionBehindTarget
