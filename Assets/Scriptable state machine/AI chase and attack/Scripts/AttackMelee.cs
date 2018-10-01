@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "PluggableAI/Actions/Attack")]
-public class Attack : Action {
+public class AttackMelee : Action {
    
     public override void DoAction(StateManager _stateManager) {
        

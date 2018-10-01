@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: State idle enemy 1
   m_EditorClassIdentifier: 
   actions:
-  - {fileID: 11400000, guid: 932702c6063049448a7dbd96ae286c8c, type: 2}
+  - {fileID: 11400000, guid: f8e5bbb8cfa839d4a9273c1830f2fde1, type: 2}
   possibleStates: []
   transitions:
   - decision: {fileID: 11400000, guid: 1bcd0672653e82f4280c61afc08d52b0, type: 2}

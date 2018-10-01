@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public class DecisionTargetNull : Decision {
+[CreateAssetMenu(menuName = "PluggableAI/Decisions/TargetNull")]
+public class TargetNull : Decision {
 
     public override bool Decide(StateManager controller) {
         if (controller.chaseTarget == null) {

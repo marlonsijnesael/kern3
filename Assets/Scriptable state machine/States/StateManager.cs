@@ -9,6 +9,7 @@ public class StateManager : MonoBehaviour {
     public State currentState;
     
     public Transform eyes;
+    public GameObject[] body;
     public State remainState;
    
 
@@ -39,7 +40,11 @@ public class StateManager : MonoBehaviour {
     void Update() {
         if (!aiActive)
             return;
+        if (!navMeshAgent.isOnNavMesh) {
+            navMeshAgent.Warp(this.transform.position);
+            }
         currentState.UpdateState(this);
+        
         }
 
     void OnDrawGizmos() {

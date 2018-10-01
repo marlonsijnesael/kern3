@@ -17,13 +17,16 @@ public class LookDecision : Decision {
         RaycastHit hit;
         Debug.DrawRay(controller.eyes.transform.position, fwd * 50, Color.green);
         if (Physics.SphereCast(controller.eyes.transform.position,radius, fwd, out hit, 50)) {
-            if (hit.transform.tag == "Player" || hit.transform.tag == "Agent")
+            if (hit.transform.tag == "Player" || hit.transform.tag == "Agent") {
                 Debug.Log(hit.transform.name);
-            controller.chaseTarget = hit.transform;
-            return true;
+                controller.chaseTarget = hit.transform;
+
+                return true;
+                }
             } else {
             return false;
             }
+        return false;
 
         }
     }
