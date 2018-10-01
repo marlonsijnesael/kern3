@@ -8,6 +8,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: Idle action
-  m_EditorClassIdentifier: Assembly-CSharp::ActionIdle
+  m_Script: {fileID: 11500000, guid: 984fbc8abfb796247bbccc4dd899a1dc, type: 3}
+  m_Name: Action idle
+  m_EditorClassIdentifier: 

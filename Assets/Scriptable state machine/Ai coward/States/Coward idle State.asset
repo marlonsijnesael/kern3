@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Name: Coward idle State
   m_EditorClassIdentifier: 
   actions:
-  - {fileID: 11400000, guid: ceebee0cdaa5e90419396c3f9b4aff65, type: 2}
+  - {fileID: 11400000, guid: 5b692df2275935241849bfb0d7f99b3f, type: 2}
   possibleStates: []
   transitions:
-  - decision: {fileID: 11400000, guid: 6781c21336c3fa04da6ea78edae51c99, type: 2}
+  - decision: {fileID: 11400000, guid: 1939680a6b6c0cf4ab2d8db78eb90555, type: 2}
     trueState: {fileID: 11400000, guid: 5f3ee0e5e106eaf44989ea998271bd67, type: 2}
     falseState: {fileID: 11400000}
   sceneGizmoColor: {r: 0.98055005, g: 1, b: 0, a: 1}

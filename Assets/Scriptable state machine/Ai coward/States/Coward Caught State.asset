@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Name: Coward Caught State
   m_EditorClassIdentifier: 
   actions:
-  - {fileID: 11400000, guid: 1a8686e948a18744b9b2e6a4652ff87a, type: 2}
-  - {fileID: 11400000, guid: 5eb9c6d4d6da153419a4ee1663176b4d, type: 2}
+  - {fileID: 11400000, guid: db09f789602feaf458b430ce4ee01c9d, type: 2}
+  - {fileID: 11400000, guid: 2ec990177158e9b4ca4defd4cb30b961, type: 2}
   possibleStates: []
   transitions:
-  - decision: {fileID: 11400000, guid: 6781c21336c3fa04da6ea78edae51c99, type: 2}
+  - decision: {fileID: 11400000, guid: 1939680a6b6c0cf4ab2d8db78eb90555, type: 2}
     trueState: {fileID: 11400000}
     falseState: {fileID: 11400000, guid: eee5f8fdee6ab0f4eb4632f7c1cc2958, type: 2}
   - decision: {fileID: 11400000, guid: 7edbc2912b202d045adaaacc2dfecd1b, type: 2}

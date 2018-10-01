@@ -3,8 +3,8 @@ using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "PluggableAI/Decisions/SphereCast")]
-public class SphereCastdecision : Decision {
+[CreateAssetMenu(menuName = "PluggableAI/Decisions/Overlap")]
+public class DecisionOverlapSphere : Decision {
 
     public float radius;
 
