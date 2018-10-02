@@ -65,8 +65,10 @@ public class FillMap : MonoBehaviour {
                 InstantiateNode(room, roomPrefab, true);
                 if (Random.value > 0.7f) {
                     EnemySpawnPoint = new Vector3(room.worldPos.x , room.worldPos.y + 5, room.worldPos.z );
-                    SpawnEnemy(10f, EnemySpawnPoint);   
-                    }
+                    GameObject enemy = Instantiate(enemeyPrefab);
+
+                    enemy.GetComponent<NavMeshAgent>().Warp(EnemySpawnPoint);
+                }
                 SetDoors(room);
                 } else if (room.type == 0) {
                 InstantiateNode(room, wallPrefab, false);
@@ -88,13 +90,11 @@ public class FillMap : MonoBehaviour {
         NavMeshHit hit;
         for (int i = 0; i < 30; i++) {
             if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas)) {
-                _spawnPoint = hit.position;
+               // _spawnPoint = hit.position;
                 }
 
             }
-        GameObject enemy = Instantiate(enemeyPrefab);
-      
-        enemy.GetComponent<NavMeshAgent>().Warp(_spawnPoint);
+        
 
         }
 
